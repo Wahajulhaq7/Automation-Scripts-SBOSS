@@ -72,7 +72,7 @@ try:
 
     print("4. Navigating to Departments...")
 
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//a[contains(., 'Departments')]"))).click()
+    wait.until( EC.element_to_be_clickable((By.XPATH, "//a[contains(normalize-space(), 'Departments')]"))).click()
 
 
 
@@ -369,14 +369,12 @@ try:
 
 
     # 24. Click 'Next'
-
     print("24. Clicking 'Next' button...")
 
-    # Using 'contains(., 'Next')' checks the text content even if it's inside a span
-
-    next_btn = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(., 'Next')]")))
-
+    next_btn = wait.until(
+    EC.element_to_be_clickable((By.XPATH, "//button[contains(@class, 'button-primary')]//span[contains(normalize-space(), 'Next')]")))
     driver.execute_script("arguments[0].click();", next_btn)
+
 
     
 
@@ -384,7 +382,7 @@ try:
 
     time.sleep(2)
 
-
+   
 
     # 25. Enter Area of Plot
 
